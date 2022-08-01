@@ -35,15 +35,21 @@ function Search() {
     </MainContainerMap>
   })
 
+  const render = (valorInput === '') ? (<Texto>Busque por nome de restaurante</Texto>) : (<>{renderizarRestaurantes}</>)
+
+  const ui = restaurants.restaurants && restaurants.restaurants.filter(res => {
+    return res.name.toLowerCase().includes(valorInput.toLocaleLowerCase())
+  })
+
   const getData = (e) => {
     setValorInput(e.target.value)
   }
 
   const tela = () => {
-    if (valorInput === '') {
-      return <Texto>Busque por nome de restaurante</Texto>
-    } else {
-      return <>{renderizarRestaurantes}</>
+    if (ui === undefined || ui.length > 0 || ui === null) {
+      return <>{render}</>
+    } else if (ui.length === 0) {
+      return <Texto>Não enconstramos :(</Texto>
     }
   }
 
