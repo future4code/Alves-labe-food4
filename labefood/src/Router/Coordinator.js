@@ -15,3 +15,7 @@ export const goToFeed = (navigate) => {
     navigate('/feed')
 } 
 
+export const search = (navigate) => {
+    navigate('/search')
+}
+
