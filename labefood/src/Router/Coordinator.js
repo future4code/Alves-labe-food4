@@ -13,12 +13,12 @@ export const goToSingUp = (navigate) => {
 
 export const goToFeed = (navigate) => {
     navigate('/feed')
-} 
+}
 
 export const search = (navigate) => {
     navigate('/search')
 }
 
-export const cart = (navigate) => {
+export const goTocart = (navigate) => {
     navigate('/cart')
 }

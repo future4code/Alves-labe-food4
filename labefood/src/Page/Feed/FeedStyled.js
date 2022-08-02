@@ -62,7 +62,7 @@ margin-bottom:5%;
 border-radius:8px;
 `
 export const Image = styled.img`
-width: 100%;
+width: 90vw;
 border-radius: 7px 7px 0px 0px;
 `
 
