@@ -1,13 +1,19 @@
 import { useState } from "react";
 
-const useForm = (initialState) => {
-    const [form, setForm] = useState(initialState);
+const useForm = (stateInicial) => {
+    const [form, setForm] = useState(stateInicial)
 
-    const onChange = (event) => {
-        const { name, value } = event.target;
-        setForm({ ...form, [name]: value });
-    };
-    return { form, onChange }
+    const pegaDados = (e) => {
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+    }
+
+    const limpaCampos = () => {
+        setForm(stateInicial)
+    }
+
+    return { form, pegaDados, limpaCampos }
+
 }
 
 export default useForm
