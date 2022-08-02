@@ -19,3 +19,6 @@ export const search = (navigate) => {
     navigate('/search')
 }
 
+export const cart = (navigate) => {
+    navigate('/cart')
+}

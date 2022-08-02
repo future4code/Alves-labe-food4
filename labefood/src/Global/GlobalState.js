@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import {GlobalContext} from './GlobalContext'
+import { GlobalContext } from './GlobalContext'
 
 export default function GlobalState(props) {
 
-    const value = {
+    const [restaurante, setRestaurante] = useState()
+    const [bodyPedido, setBodyPedido] = useState()
+    const [frete, setFrete] = useState()
 
+    const value = {
+        restaurante,
+        setRestaurante,
+        bodyPedido,
+        setBodyPedido,
+        frete,
+        setFrete
     }
 
     const Provider = GlobalContext.Provider
