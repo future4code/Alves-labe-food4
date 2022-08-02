@@ -6,6 +6,7 @@ export default function GlobalState(props) {
     const [restaurante, setRestaurante] = useState()
     const [bodyPedido, setBodyPedido] = useState()
     const [frete, setFrete] = useState()
+    const [restauranteSele, setRestaurenteSele] = useState([])
 
     const value = {
         restaurante,
@@ -13,7 +14,9 @@ export default function GlobalState(props) {
         bodyPedido,
         setBodyPedido,
         frete,
-        setFrete
+        setFrete,
+        setRestaurenteSele,
+        restauranteSele,
     }
 
     const Provider = GlobalContext.Provider

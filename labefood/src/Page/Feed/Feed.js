@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../Global/GlobalContext'
 import { useNavigate } from 'react-router-dom'
-import { logout, search } from '../../Router/Coordinator'
+import { goTocart, logout, search } from '../../Router/Coordinator'
 import useProtectedPage from '../../Hooks/UseProtectPage'
-import {CampoDados, Icone, Pesquisa, CampoBotao, Image, CaptureOrder, ContainerImage, ContainerInfoTime, ContainerRenderMain, ContainerMin, ContainerFrete, ContainerNameRest, MainContainer, MainContainerMap } from "./FeedStyled"
+import { CampoDados, Icone, Pesquisa, CampoBotao, Image, CaptureOrder, ContainerImage, ContainerInfoTime, ContainerRenderMain, ContainerMin, ContainerFrete, ContainerNameRest, MainContainer, MainContainerMap } from "./FeedStyled"
 import useRequestData from '../../Hooks/useRequestData'
 import { BASE_URL } from '../../Components/BASE_URL'
 import IconeLupa from '../../Img/Icone_Lupa.png'
 
 function Feed() {
   const navigate = useNavigate()
-  const { } = useContext(GlobalContext)
+  const { setRestaurenteSele, setFrete, restauranteSele } = useContext(GlobalContext)
   const [valorInput, setValorInput] = useState('')
 
   const restaurants = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
@@ -20,7 +20,7 @@ function Feed() {
   })
     .map((res) => {
       return <MainContainerMap key={res.id}>
-        <CaptureOrder>
+        <CaptureOrder onClick={() => onChangeRest(res.id, res.shipping)}>
           <ContainerImage>
             <Image src={res.logoUrl} width={20} />
           </ContainerImage>
@@ -38,11 +38,14 @@ function Feed() {
         </CaptureOrder>
       </MainContainerMap>
     })
-
+  console.log(restauranteSele)
+  const onChangeRest = (id, shipping) => {
+    setRestaurenteSele(id)
+    setFrete(shipping)
+  }
   const getData = (tipo) => {
     setValorInput(tipo)
   }
-
   return (
     <MainContainer>
       Rappi - 4B
@@ -66,6 +69,7 @@ function Feed() {
         {renderizarRestaurantes}
       </ContainerRenderMain>
       <button onClick={() => logout(navigate)}>Logout</button>
+      <button onClick={() => goTocart(navigate)}>IR PARA CARRINHO</button>
     </MainContainer>
   )
 }
