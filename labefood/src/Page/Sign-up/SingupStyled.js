@@ -1,29 +1,5 @@
 import styled from "styled-components"
 
-export const ConteinerSingUpPage = styled.div ` 
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #B8B8B8;
-   
-@media(max-width: 480px) {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #B8B8B8;
-    overflow: scroll;
-}
-@media(max-width: 350px) {
-    margin: 0;
-    overflow: scroll;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #B8B8B8;
-}
-`
 
 export const TextConteinerSingUpPage = styled.h1 ` 
     font-family: 'ROBOTO';
@@ -51,19 +27,13 @@ export const LogoSingUpPage = styled.img `
     }
 `
 
-export const ContainerLogin = styled.div ` 
-   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`
-export const ContainerForm = styled.form`
+export const ConteinerInput = styled.div ` 
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: auto;
     padding: 20px;
     margin: auto;
-    justify-content: space-around;
+    
     input{
         color: black;
     }
@@ -71,7 +41,7 @@ export const ContainerForm = styled.form`
 export const ConteinerInputSenha = styled.div ` 
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: auto;
     padding: 20px;
     margin: auto;
     justify-content: space-around;
@@ -80,15 +50,10 @@ export const ConteinerInputSenha = styled.div `
     }
 `
 
-
-export const ButtonSignUp = styled.button`
-    margin-top: 1.3rem;
-    cursor: pointer;
-    border: none;
+export const ButtonLogin = styled.button ` 
+    color: black;
     background-color: transparent;
-    font-size: 1rem;
-     `
-
-
-
-
+    border: none;
+    margin-top: 20px;
+    margin-left: 20px;
+`
