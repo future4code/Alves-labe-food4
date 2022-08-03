@@ -16,14 +16,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-// import logo from "../../img/Logologin.png";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+ import Logo from "../../Img/Logologin.png";
 import {
-  ContainerLogin,
-  ContainerForm,
-  ButtonSignUp,
-
-
-  // LogoSingUpPage,
+  ConteinerInput, ConteinerInputSenha,LogoSingUpPage,ButtonLogin,TextConteinerSingUpPage
 
 } from './SingupStyled'
 
@@ -81,13 +77,16 @@ function Singup() {
   };
 
   return (
+        
     <div>
+      
+      <ButtonLogin onClick={()=> goToLogin(navigate)} ><ArrowBackIosIcon/></ButtonLogin>
+     <LogoSingUpPage src={Logo}  alt={"Logo Ifuture"} />
+     <TextConteinerSingUpPage>Cadastrar</TextConteinerSingUpPage>
+    <form onSubmit={onSubmitForm} > 
 
-      <ContainerLogin>
-        <h3>Cadastrar</h3>
-
-        <ContainerForm onSubmit={onSubmitForm} >
-          <TextField
+        <ConteinerInput>
+            <TextField
             name={"name"}
             value={form.name}
             onChange={pegaDados}
@@ -97,11 +96,11 @@ function Singup() {
             margin={"normal"}
             required
             placeholder={"Nome e sobrenome"}
-          />
+            />
+        </ConteinerInput>
 
-
-
-          <TextField
+        <ConteinerInput>
+            <TextField
             name={"email"}
             placeholder={"email@email.com"}
             value={form.email}
@@ -111,100 +110,103 @@ function Singup() {
             fullWidth
             required
             type={"email"}
+            
+            />
+        </ConteinerInput>
 
-          />
+        <ConteinerInput>
 
+            <TextField
+                name={"cpf"}
+                placeholder={"000.000.000-00"}
+                value={form.cpf}
+                onChange={pegaDados}
+                label={"CPF"}
+                variant={"outlined"}
+                fullWidth
+                type={"cpf"}
+                required
+            />
 
+        </ConteinerInput>
 
+        <ConteinerInputSenha>
 
-          <TextField
-            name={"cpf"}
-            placeholder={"000.000.000-00"}
-            value={form.cpf}
-            onChange={pegaDados}
-            label={"CPF"}
-            variant={"outlined"}
-            fullWidth
-            type={"cpf"}
-            required
-          />
-
-
-
-
-
-          <FormControl variant="outlined">
-
+        <FormControl variant="outlined">
+            
             <InputLabel required htmlFor="outlined-adornment-password">Senha</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
-              type={valueSenha.showConfirmePassword ? 'text' : 'password'}
-              value={form.password}
-              name={"password"}
-              onChange={pegaDados}
-              placeholder={"minimo 6 caracteres"}
-
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-
+                id="outlined-adornment-password"
+                type={valueSenha.showConfirmePassword ? 'text' : 'password'}
+                value={form.password}
+                name={"password"}
+                onChange={pegaDados}
+                
+                endAdornment={
+            <InputAdornment position="end">
+                <IconButton
+                
                     aria-label="toggle password visibility"
                     onClick={handleClickShowConfirme}
                     onMouseDown={handlePassword}
                     edge="end"
-
-                  >
+                    >
                     {valueSenha.showConfirmePassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
+                    </IconButton>
                 </InputAdornment>
-              }
-              labelWidth={70}
+                }
+                labelWidth={70}
             />
+        </FormControl>
 
+        </ConteinerInputSenha>
 
-          </FormControl>
+        <ConteinerInput>
 
-
-
-
-          <FormControl variant="outlined">
+        <FormControl variant="outlined">
             <InputLabel required htmlFor="outlined-adornment-password">Confirmar</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
-              required
-              type={values.showPassword ? 'text' : 'password'}
-              value={form.confirmPassword}
-              onChange={pegaDados}
-              name={"confirmPassword"}
-              placeholder={"Confime a senha anterior"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
+                id="outlined-adornment-password"
+                required
+                type={values.showPassword ? 'text' : 'password'}
+                value={form.confirmPassword}
+                onChange={pegaDados}
+                name={"confirmPassword"}
+                endAdornment={
+            <InputAdornment position="end">
+                <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
-                  >
+                    >
                     {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
+                    </IconButton>
                 </InputAdornment>
-              }
-              labelWidth={70}
+                }
+                labelWidth={70}
             />
-          </FormControl>
-          <Button type={"submit"}
+        </FormControl>
+            
+
+        </ConteinerInput>
+    
+        <ConteinerInput>
+
+             <Button
+            type={"submit"}
             fullWidth
             variant={"contained"}
-            color={"primary"}>Criar</Button>
-          <ButtonSignUp
-            onClick={() => goToLogin(navigate)} variant={"text"}>
-            Voltar para login? Clique aqui.
-          </ButtonSignUp>
-        </ContainerForm>
-      </ContainerLogin>
+            color={"primary"}
 
-
-    </div>
+            >
+                Criar
+                
+            </Button>
+    
+        </ConteinerInput>
+    </form>
+</div>
   )
 }
 
