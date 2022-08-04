@@ -4,7 +4,10 @@ import Login from '../Page/Login/Login'
 import Singup from '../Page/Sign-up/Singup'
 import Feed from '../Page/Feed/Feed'
 import Search from '../Page/Search/Search'
-import Cart from "../Page/Cart/Cart";
+import Cart from "../Page/Cart/Cart"
+import Profile from "../Page/Profile/Profile"
+import EditProfile from '../Page/EditProfile/EditProfile'
+import EditAddress from '../Page/EditAddress/EditAddress'
 
 const Router = () => {
     return (
@@ -15,6 +18,9 @@ const Router = () => {
                 <Route path='feed' element={<Feed />} />
                 <Route path="search" element={<Search />} />
                 <Route path="cart" element={<Cart />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="editprofile" element={<EditProfile />} />
+                <Route path="editaddress" element={<EditAddress />} />
             </Routes>
         </BrowserRouter>
     )
