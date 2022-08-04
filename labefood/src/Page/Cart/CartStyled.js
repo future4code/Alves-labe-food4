@@ -50,12 +50,16 @@ flex-direction: row-reverse;
 `
 export const ContainerNome = styled.div`
 color:#e86e5a;
+padding-left:20px;
 `
 export const ContainerDescricao = styled.div`
 color:#b8b8b8;
+width:230px;
+padding-left:20px;
 `
 export const ContainerValorPedido = styled.div`
 color:#000000;
+padding-left:20px;
 `
 export const MainContainerPagamento = styled.div`
 `

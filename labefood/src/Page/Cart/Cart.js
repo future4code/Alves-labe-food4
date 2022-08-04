@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useForm from '../../Hooks/UseForm'
 import { BASE_URL } from '../../Components/BASE_URL'
 import axios from 'axios'
@@ -12,12 +12,10 @@ function Cart() {
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
+    const [pedido, setPedido] = useState()
     const enderecoUser = useRequestData([], `${BASE_URL}rappi4B/profile`)
     const enderecoRes = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
-    const pedido = useRequestData([], `${BASE_URL}rappi4B/active-order`)
     const historico = useRequestData([], `${BASE_URL}rappi4B/orders/history`)
-    console.log(pedido)
-    console.log(historico)
 
     const enderecoResFilter = enderecoRes.restaurants && enderecoRes.restaurants.filter((res) => {
         return restauranteSele === res.id
@@ -35,20 +33,29 @@ function Cart() {
         </div>
     })
     const teste = [{
-        'id': '3vcYYSOEf8dKeTPd7vHe',
-        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031404_66194495.jpg",
-        "description": "Pastel autêntico, feito na hora!",
+        "id": "3vcYYSOEf8dKeTPd7vHe",
+        "price": 3,
         "name": "Pastel",
-        "price": 8,
+        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031408_66194519.jpg",
+        "category": "Pastel",
+        "description": "Pastel autêntico, feito na hora!",
         'quantity': 2
     }, {
-        "id": "5qVBu990QDEcBPOzitMy",
-        "price": 5.5,
-        "name": "Kibe",
-        "category": "Salgado",
-        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031407_66194536.jpg",
-        "description": "Kibe árabe de verdade",
+        "id": "XHhajKAtvIH2Dq6F83PX",
+        "category": "Bebida",
+        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031439_71805445.jpg",
+        "price": 7.9,
+        "description": "Laranja, Acerola ou Maçã",
+        "name": "Suco",
         'quantity': 3
+    }, {
+        "id": "bEj2JorVLWo86iJf7OF9",
+        "price": 4,
+        "photoUrl": "https://static-images.ifood.com.br/image/upload/t_medium/pratos/f62f7746-4888-4e81-a9b0-93bf5453c51a/202103180149_woHq_s.jpg",
+        "description": "Coca cola, Sprite ou Guaraná",
+        "category": "Bebida",
+        "name": "Refrigerante",
+        "quantity": 7
     }]
 
     const body = {
@@ -73,12 +80,21 @@ function Cart() {
         })
     }
 
-    // const renderOrderActive = pedido.order && pedido.order.map((pedido) => {
-    //     return <div>
-    //         {pedido.restaurantName}
-    //         {pedido.totalPrice}
-    //     </div>
-    // })
+    const receberOrder = () => {
+        axios.get(`${BASE_URL}rappi4B/active-order`, {
+            headers: {
+                auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imh4TXVraFpIRm1WSG9hWk1XNVgwIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2s1NEBmdXR1cmU1LmNvbSIsImNwZiI6IjE1Ni40NTEuMTUxLTEyIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTY1OTYyMDgxOH0.BdxJfcY7L5mt-jJN7I9xYTbwkHD2FbJZkA6RjY8x1n4"
+            }
+        }).then((resposta) => {
+            setPedido(resposta.data.order)
+        }).catch((erro) => {
+            console.log(erro)
+        })
+    }
+    useEffect(() => {
+        receberOrder()
+    }, [])
+
 
     const renderCarrinho = teste && teste.map((item, index) => {
         return <MainContainerMapCart key={index}>
@@ -178,6 +194,13 @@ function Cart() {
                     </ContainerBotaoConfirmar>
                 </form>
             </MainContainerPagamento>
+            <div>
+                <p>Pedido em andamento</p>
+                <p>{pedido?.restaurantName}</p>
+                <div>
+                    <p>SUBTOTAL {pedido?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                </div>
+            </div>
         </MainContainer>
     )
 }
