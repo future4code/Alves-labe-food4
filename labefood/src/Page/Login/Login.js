@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../Global/GlobalContext'
 import { useNavigate } from 'react-router-dom'
-import { goToSingUp, goToFeed } from '../../Router/Coordinator'
+import { goToSingUp, goToFeed, } from '../../Router/Coordinator'
 import useForm from '../../Hooks/UseForm';
 import { BASE_URL } from '../../Components/BASE_URL';
 import axios from 'axios';
+import Logo from "../../Img/Logologin.png";
 import 
 { ContainerLogin, 
   ContainerForm, 
   ButtonSignUp, 
   LoginButton, 
   PasswordInput, 
-  EmailInput 
+  EmailInput,
+  LogoLoginPage 
 } from './LoginStyled'
 
 
@@ -45,6 +47,7 @@ function Login() {
 
 return (
   <div>
+    <LogoLoginPage src={Logo} alt={"Logo Ifuture"} />
     <ContainerLogin>
       <h3>Entrar</h3>
       <ContainerForm onSubmit={onSubmitForm} >
@@ -66,6 +69,7 @@ return (
         </ContainerForm>
         <ButtonSignUp
           onClick={() => goToSingUp(navigate)} variant={"text"}>
+          
           Não Possui Cadastro? Clique aqui.
         </ButtonSignUp>
       

@@ -34,3 +34,6 @@ export const goToEditProfile = (navigate) =>{
 export const goToEditAddress= (navigate) =>{
     navigate('/editaddress')
 }
+export const goToAddress= (navigate) =>{
+    navigate('/address')
+}
