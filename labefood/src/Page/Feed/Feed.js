@@ -29,7 +29,7 @@ function Feed() {
           </ContainerNameRest>
           <ContainerInfoTime>
             <ContainerMin>
-              {res.deliveryTime}min
+             {res.deliveryTime} - {res.deliveryTime+10} min
             </ContainerMin>
             <ContainerFrete>
               Frete:R${res.shipping},00

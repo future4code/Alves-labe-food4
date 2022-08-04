@@ -14,6 +14,10 @@ function Cart() {
     })
     const enderecoUser = useRequestData([], `${BASE_URL}rappi4B/profile`)
     const enderecoRes = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
+    const pedido = useRequestData([], `${BASE_URL}rappi4B/active-order`)
+    const historico = useRequestData([], `${BASE_URL}rappi4B/orders/history`)
+    console.log(pedido)
+    console.log(historico)
 
     const enderecoResFilter = enderecoRes.restaurants && enderecoRes.restaurants.filter((res) => {
         return restauranteSele === res.id
@@ -68,6 +72,13 @@ function Cart() {
         })
     }
 
+    // const renderOrderActive = pedido.order && pedido.order.map((pedido) => {
+    //     return <div>
+    //         {pedido.restaurantName}
+    //         {pedido.totalPrice}
+    //     </div>
+    // })
+
     const renderCarrinho = teste && teste.map((item, index) => {
         return <MainContainerMapCart key={index}>
             <ContainerMapCart>
@@ -96,7 +107,6 @@ function Cart() {
     })
 
     const placeOrder = () => {
-
         axios.post(`${BASE_URL}rappi4B/restaurants/1/order`, body, {
             headers: {
                 auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkhSUlFLOWRjWER5ajB2eXh2bGdaIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2sxQGZ1dHVyZTQuY29tIiwiY3BmIjoiMTIxLjEyMS4xMzEtMTIiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUi4gQWZvbnNvIEJyYXosIDE3NywgNzEgLSBWaWxhIE4uIENvbmNlacOnw6NvIiwiaWF0IjoxNjU5NDUyNDk4fQ.iurT0aAFrZR2GJNyqrQQnJDveCXJdqHiaBOqhhurH50'
