@@ -22,3 +22,15 @@ export const search = (navigate) => {
 export const goTocart = (navigate) => {
     navigate('/cart')
 }
+
+export const goToProfile = (navigate) => {
+    navigate('/profile')
+}
+
+export const goToEditProfile = (navigate) =>{
+    navigate('/editprofile')
+}
+
+export const goToEditAddress= (navigate) =>{
+    navigate('/editaddress')
+}
