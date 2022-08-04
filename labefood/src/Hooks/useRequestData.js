@@ -7,7 +7,7 @@ const useRequestData = (initialData, url, refresh) => {
     const getPosts = () => {
         axios.get(url, {
             headers: {
-                auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFTWEIxTlVBTFJzRkk5NG80TGMxIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2tAZnV0dXJlNC5jb20iLCJjcGYiOiIxMjEuMTIxLjEyMS0xMiIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBBZm9uc28gQnJheiwgMTc3LCA3MSAtIFZpbGEgTi4gQ29uY2Vpw6fDo28iLCJpYXQiOjE2NTkzNzAwNTV9.as2e97GsHIID2dGqmzfnwKW-wGPYOqSKnq_JfXtr7rI'
+                auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InJFVFhOODlKY2JpcmRKVjNPaXQwIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2s0QGZ1dHVyZTQuY29tIiwiY3BmIjoiMTIxLjE1MS4xNTEtMTIiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUi4gQWZvbnNvIEJyYXosIDE3NywgNzEgLSBWaWxhIE4uIENvbmNlacOnw6NvIiwiaWF0IjoxNjU5NjE2NDMwfQ.WBanQTK9PIiUQBB9c7_F4MGrKK60ywcecwsFuGhw3P8'
             }
         }).then((resposta) => {
             setData(resposta.data)
