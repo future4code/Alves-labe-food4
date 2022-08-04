@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export const TextConteinerSingUpPage = styled.h1 ` 
     font-family: 'ROBOTO';
-    color: #000000;
+    color: black;
     text-align: center;
     margin-top: 30px;
     font-size: 16px;
@@ -33,6 +33,7 @@ export const ConteinerInput = styled.div `
     width: auto;
     padding: 20px;
     margin: auto;
+    
     
     input{
         color: black;

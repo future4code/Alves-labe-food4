@@ -52,3 +52,19 @@ export const ButtonSignUp = styled.button`
     background-color: transparent;
     font-size: 1rem;
      `
+export const LogoLoginPage  = styled.img ` 
+width: max-content;
+height: max-content;
+display: block;
+margin: auto;
+margin-top: 20px;
+@media only screen and (min-width: 736px) {
+    width: min-content;
+    height: min-content;
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-top: 10px;
+    margin: auto;
+}
+`

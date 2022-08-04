@@ -8,6 +8,7 @@ import Cart from "../Page/Cart/Cart"
 import Profile from "../Page/Profile/Profile"
 import EditProfile from '../Page/EditProfile/EditProfile'
 import EditAddress from '../Page/EditAddress/EditAddress'
+import Address from "../Page/Address/Address";
 
 const Router = () => {
     return (
@@ -21,6 +22,7 @@ const Router = () => {
                 <Route path="profile" element={<Profile />} />
                 <Route path="editprofile" element={<EditProfile />} />
                 <Route path="editaddress" element={<EditAddress />} />
+                <Route path="address" element={<Address />} />
             </Routes>
         </BrowserRouter>
     )
