@@ -42,11 +42,12 @@ function Cart() {
         "price": 8,
         'quantity': 2
     }, {
-        'id': '3vcYYSOEf8dKeTPd7vHe',
-        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031408_66194519.jpg",
-        "description": "Pastel autêntico, feito na hora!",
-        "name": "Pastel",
-        "price": 5,
+        "id": "5qVBu990QDEcBPOzitMy",
+        "price": 5.5,
+        "name": "Kibe",
+        "category": "Salgado",
+        "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031407_66194536.jpg",
+        "description": "Kibe árabe de verdade",
         'quantity': 3
     }]
 
@@ -56,7 +57,7 @@ function Cart() {
             "quantity": 10
         }, {
             "quantity": 1,
-            "id": "5omTFSOBYiTqeiDwhiBx"
+            "id": "5qVBu990QDEcBPOzitMy"
         }],
         "paymentMethod": form.paymentMethod
     }
@@ -109,7 +110,7 @@ function Cart() {
     const placeOrder = () => {
         axios.post(`${BASE_URL}rappi4B/restaurants/1/order`, body, {
             headers: {
-                auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkhSUlFLOWRjWER5ajB2eXh2bGdaIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2sxQGZ1dHVyZTQuY29tIiwiY3BmIjoiMTIxLjEyMS4xMzEtMTIiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUi4gQWZvbnNvIEJyYXosIDE3NywgNzEgLSBWaWxhIE4uIENvbmNlacOnw6NvIiwiaWF0IjoxNjU5NDUyNDk4fQ.iurT0aAFrZR2GJNyqrQQnJDveCXJdqHiaBOqhhurH50'
+                auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imh4TXVraFpIRm1WSG9hWk1XNVgwIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2s1NEBmdXR1cmU1LmNvbSIsImNwZiI6IjE1Ni40NTEuMTUxLTEyIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTY1OTYyMDgxOH0.BdxJfcY7L5mt-jJN7I9xYTbwkHD2FbJZkA6RjY8x1n4'
             }
         }).then(res => {
             console.log(res.data.order.order)
