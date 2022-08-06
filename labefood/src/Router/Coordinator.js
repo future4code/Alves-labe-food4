@@ -1,4 +1,5 @@
 export const goToLogin = (navigate) => {
+    localStorage.clear()
     navigate('/')
 }
 
@@ -36,4 +37,7 @@ export const goToEditAddress= (navigate) =>{
 }
 export const goToAddress= (navigate) =>{
     navigate('/address')
+}
+export const goToRestaurantDetail = (navigate) =>{
+    navigate('/restaurantDetail')
 }

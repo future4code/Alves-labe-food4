@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../Global/GlobalContext'
 import { useNavigate } from 'react-router-dom'
-import { goTocart, logout, search } from '../../Router/Coordinator'
+import { goTocart, logout, search, goToRestaurantDetail } from '../../Router/Coordinator'
 import useProtectedPage from '../../Hooks/UseProtectPage'
 import { CampoDados, Icone, Pesquisa, CampoBotao, Image, CaptureOrder, ContainerImage, ContainerInfoTime, ContainerRenderMain, ContainerMin, ContainerFrete, ContainerNameRest, MainContainer, MainContainerMap } from "./FeedStyled"
 import useRequestData from '../../Hooks/useRequestData'
@@ -10,7 +10,7 @@ import IconeLupa from '../../Img/Icone_Lupa.png'
 
 function Feed() {
   const navigate = useNavigate()
-  const { setRestaurenteSele, setFrete, restauranteSele } = useContext(GlobalContext)
+  const { setRestaurenteSele, setFrete, restauranteSele, setID } = useContext(GlobalContext)
   const [valorInput, setValorInput] = useState('')
 
   const restaurants = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
@@ -22,14 +22,14 @@ function Feed() {
       return <MainContainerMap key={res.id}>
         <CaptureOrder onClick={() => onChangeRest(res.id, res.shipping)}>
           <ContainerImage>
-            <Image src={res.logoUrl} width={20} />
+            <Image src={res.logoUrl} width={20}/>
           </ContainerImage>
           <ContainerNameRest>
             {res.name}
           </ContainerNameRest>
           <ContainerInfoTime>
             <ContainerMin>
-             {res.deliveryTime} - {res.deliveryTime+10} min
+              {res.deliveryTime} - {res.deliveryTime + 10} min
             </ContainerMin>
             <ContainerFrete>
               Frete:R${res.shipping},00
@@ -38,10 +38,13 @@ function Feed() {
         </CaptureOrder>
       </MainContainerMap>
     })
-  console.log(restauranteSele)
+
   const onChangeRest = (id, shipping) => {
     setRestaurenteSele(id)
+    localStorage.setItem('id', id)
     setFrete(shipping)
+    localStorage.setItem('frete', shipping)
+    goToRestaurantDetail(navigate)
   }
   const getData = (tipo) => {
     setValorInput(tipo)

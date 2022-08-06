@@ -29,7 +29,11 @@ export default function Address() {
     "complement": form.complement,
   }
   const cadastrarUser = () => {
-    axios.post(`${BASE_URL}rappi4B/address`, body)
+    axios.put(`${BASE_URL}rappi4B/address`, body, {
+      headers: {
+        auth: localStorage.getItem('tokenCadastro')
+      }
+    })
       .then((res) => {
         console.log(res.data.token)
         localStorage.setItem('token', res.data.token)

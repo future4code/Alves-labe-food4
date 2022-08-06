@@ -3,7 +3,7 @@ import { GlobalContext } from '../../Global/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Components/BASE_URL';
 import axios from 'axios';
-import { goToFeed } from '../../Router/Coordinator'
+import { goToAddress } from '../../Router/Coordinator'
 import useForm from '../../Hooks/UseForm';
 import { useState } from 'react';
 import TextField from '@material-ui/core/TextField'
@@ -39,8 +39,8 @@ function Singup() {
     axios.post(`${BASE_URL}rappi4B/signup`, body)
       .then((res) => {
         console.log(res.data.token)
-        localStorage.setItem('token', res.data.token)
-        goToFeed(navigate)
+        localStorage.setItem('tokenCadastro', res.data.token)
+        goToAddress(navigate)
       }).catch((err) => {
         console.log(err)
       })
