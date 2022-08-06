@@ -5,7 +5,7 @@ import axios from 'axios'
 import { GlobalContext } from '../../Global/GlobalContext'
 import useRequestData from '../../Hooks/useRequestData'
 import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
-
+import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
     const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, products, setProducts } = useContext(GlobalContext)
@@ -172,6 +172,7 @@ function Cart() {
                     <p>SUBTOTAL {pedido?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
             </div>
+            <Footer/>
         </MainContainer>
     )
 }

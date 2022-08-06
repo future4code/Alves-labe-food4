@@ -7,6 +7,7 @@ import { CampoDados, Icone, Pesquisa, CampoBotao, Image, CaptureOrder, Container
 import useRequestData from '../../Hooks/useRequestData'
 import { BASE_URL } from '../../Components/BASE_URL'
 import IconeLupa from '../../Img/Icone_Lupa.png'
+import Footer from '../../Components/Footer/Footer'
 
 function Feed() {
   const navigate = useNavigate()
@@ -73,6 +74,7 @@ function Feed() {
       </ContainerRenderMain>
       <button onClick={() => logout(navigate)}>Logout</button>
       <button onClick={() => goTocart(navigate)}>IR PARA CARRINHO</button>
+      <Footer />
     </MainContainer>
   )
 }
