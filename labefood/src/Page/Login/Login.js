@@ -13,7 +13,9 @@ import
   LoginButton, 
   PasswordInput, 
   EmailInput,
-  LogoLoginPage 
+  LogoLoginPage ,
+  Title,
+  FormStyle
 } from './LoginStyled'
 
 
@@ -46,10 +48,9 @@ function Login() {
 
 
 return (
-  <div>
+  <ContainerLogin>
     <LogoLoginPage src={Logo} alt={"Logo Ifuture"} />
-    <ContainerLogin>
-      <h3>Entrar</h3>
+      <Title>Entrar</Title>
       <ContainerForm onSubmit={onSubmitForm} >
         <EmailInput
           name='email'
@@ -65,17 +66,14 @@ return (
           placeholder='Senha'
           value={form.password}
         />
-        <LoginButton onClick={()=> postLogin()}>Login</LoginButton>
+        <LoginButton onClick={()=> postLogin()}>Entrar</LoginButton>
         </ContainerForm>
-        <ButtonSignUp
-          onClick={() => goToSingUp(navigate)} variant={"text"}>
-          
-          Não Possui Cadastro? Clique aqui.
-        </ButtonSignUp>
+        <Title>
+        <ButtonSignUp onClick={() => goToSingUp(navigate)} variant={"text"}>
+        Não possui cadastro? Clique aqui. </ButtonSignUp>
+        </Title>
       
     </ContainerLogin>
-  </div>
 )
 }
-
 export default Login;

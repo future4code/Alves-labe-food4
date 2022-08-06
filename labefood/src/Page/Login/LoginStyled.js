@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
 
+
 export const ContainerLogin = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+`
+export const Title = styled.div`
+  width: 360px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const ContainerForm = styled.form`
@@ -23,6 +31,8 @@ export const EmailInput = styled.input`
     font-size: 1rem;
     margin-left: 0.75rem;
     margin-bottom: 1rem;
+    border-radius: 4px;
+    border: solid 1px #b8b8b8;
 `
 
 export const PasswordInput = styled.input`
@@ -31,6 +41,9 @@ export const PasswordInput = styled.input`
     margin-left: 0.75rem;
     font-size: 1rem;
     margin-bottom: 1.25rem;
+    border-radius: 4px;
+    border: solid 1px #b8b8b8;
+
 `
 
 export const LoginButton = styled.button`
