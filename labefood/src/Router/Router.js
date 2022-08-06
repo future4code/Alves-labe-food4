@@ -9,6 +9,7 @@ import Profile from "../Page/Profile/Profile"
 import EditProfile from '../Page/EditProfile/EditProfile'
 import EditAddress from '../Page/EditAddress/EditAddress'
 import Address from "../Page/Address/Address";
+import RestaurantDetail from "../Page/RestaurantDetail/RestaurantDetail";
 
 const Router = () => {
     return (
@@ -23,6 +24,7 @@ const Router = () => {
                 <Route path="editprofile" element={<EditProfile />} />
                 <Route path="editaddress" element={<EditAddress />} />
                 <Route path="address" element={<Address />} />
+                <Route path='restaurantDetail' element={<RestaurantDetail />} />
             </Routes>
         </BrowserRouter>
     )

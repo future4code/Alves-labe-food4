@@ -15,8 +15,9 @@ export default function GlobalState(props) {
         setBodyPedido,
         frete,
         setFrete,
-        setRestaurenteSele,
         restauranteSele,
+        setRestaurenteSele,
+
     }
 
     const Provider = GlobalContext.Provider
