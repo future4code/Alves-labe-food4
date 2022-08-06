@@ -92,7 +92,6 @@ function Cart() {
         products: products,
         "paymentMethod": form.paymentMethod
     }
-    console.log(body)
 
     const placeOrder = () => {
         axios.post(`${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}/order`, body, {
@@ -100,9 +99,9 @@ function Cart() {
                 auth: localStorage.getItem('token')
             }
         }).then(res => {
-            console.log(res.data)
+            alert(res.data)
         }).catch(err => {
-            console.log(err.response.data.message)
+            alert(err.response.data.message)
         })
     }
 

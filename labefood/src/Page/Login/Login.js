@@ -31,7 +31,6 @@ function Login() {
 
     axios.post(`${BASE_URL}rappi4B/login`, body)
       .then((res) => {
-        console.log(res.data.token)
         localStorage.setItem('token', res.data.token)
         goToFeed(navigate)
       }).catch((err) => {

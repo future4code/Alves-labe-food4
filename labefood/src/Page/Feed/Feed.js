@@ -10,11 +10,10 @@ import IconeLupa from '../../Img/Icone_Lupa.png'
 
 function Feed() {
   const navigate = useNavigate()
-  const { setRestaurenteSele, setFrete, restauranteSele, setID } = useContext(GlobalContext)
+  const { setRestaurenteSele, setFrete} = useContext(GlobalContext)
   const [valorInput, setValorInput] = useState('')
 
   const restaurants = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
-  console.log(restaurants)
   const renderizarRestaurantes = restaurants.restaurants && restaurants.restaurants.filter(res => {
     return res.category.toLowerCase().includes(valorInput.toLocaleLowerCase())
   })
@@ -22,7 +21,7 @@ function Feed() {
       return <MainContainerMap key={res.id}>
         <CaptureOrder onClick={() => onChangeRest(res.id, res.shipping)}>
           <ContainerImage>
-            <Image src={res.logoUrl} width={20}/>
+            <Image src={res.logoUrl} width={20} />
           </ContainerImage>
           <ContainerNameRest>
             {res.name}
@@ -32,7 +31,7 @@ function Feed() {
               {res.deliveryTime} - {res.deliveryTime + 10} min
             </ContainerMin>
             <ContainerFrete>
-              Frete:R${res.shipping},00
+              Frete: R${res.shipping},00
             </ContainerFrete>
           </ContainerInfoTime>
         </CaptureOrder>
