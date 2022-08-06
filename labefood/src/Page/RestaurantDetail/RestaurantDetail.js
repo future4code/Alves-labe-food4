@@ -64,6 +64,16 @@ function RestaurantDetail() {
     const adicionaCarrinho = (id) => {
         const itemNoCarrinho = carrinho.find(item => id === item.id)
         if (itemNoCarrinho) {
+            setProducts(products.map(item => {
+                if (id === item.id) {
+                    return {
+                        ...item,
+                        'quantity': item.quantity + parseInt(form.quantity)
+                    }
+                }
+                return item
+            }))
+            console.log(products)
             setCarrinho(carrinho.map(item => {
                 if (id === item.id) {
                     return {
@@ -76,21 +86,26 @@ function RestaurantDetail() {
         } else {
             
             const itemAdicionado = restaurant && restaurant.products.find(item => id === item.id)
-            
             const novosItensCarrinho = [...carrinho, { ...itemAdicionado, 'quantity': parseInt(form.quantity) }]
-
             setCarrinho(novosItensCarrinho)
-        }
 
+            const novosItem = [...products, {id: id,'quantity': parseInt(form.quantity)} ]
+            setProducts(novosItem)
+
+            console.log(products)
+        }
     }
 
-
+    const removeArray = () => {
+        const teste = products.shift()
+        console.log(teste)
+    }
 
     return (
         <div>
             <div>
                 <img src={restaurant && restaurant.logoUrl} />
-                <button onClick={() => goTocart(navigate)}>Carrinho</button>
+                <button onClick={() => {removeArray();goTocart(navigate)}}>Carrinho</button>
                 <p>{restaurant && restaurant.name}</p>
                 <p>{restaurant && restaurant.category}</p>
                 <p>{restaurant && restaurant.deliveryTime} - {restaurant && restaurant.deliveryTime + 10} min</p>

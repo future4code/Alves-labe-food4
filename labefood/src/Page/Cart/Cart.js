@@ -8,13 +8,18 @@ import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCa
 
 
 function Cart() {
-    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho } = useContext(GlobalContext)
+    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, products, setProducts } = useContext(GlobalContext)
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
     const [pedido, setPedido] = useState()
     const enderecoUser = useRequestData([], `${BASE_URL}rappi4B/profile`)
     const enderecoRes = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
+
+    useEffect(() => {
+        receberOrder()
+    }, [])
+
 
     const enderecoResFilter = enderecoRes.restaurants && enderecoRes.restaurants.filter((res) => {
         return restauranteSele === res.id
@@ -54,9 +59,6 @@ function Cart() {
             console.log(erro)
         })
     }
-    useEffect(() => {
-        receberOrder()
-    }, [])
 
 
     const renderCarrinho = carrinho && carrinho.map((item, index) => {
@@ -86,13 +88,19 @@ function Cart() {
         </MainContainerMapCart>
     })
 
+    const body = {
+        products: products,
+        "paymentMethod": form.paymentMethod
+    }
+    console.log(body)
+
     const placeOrder = () => {
-        axios.post(`${BASE_URL}rappi4B/restaurants/1/order`, body, {
+        axios.post(`${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}/order`, body, {
             headers: {
-                auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imh4TXVraFpIRm1WSG9hWk1XNVgwIiwibmFtZSI6IlBldHJpY2siLCJlbWFpbCI6IlBldHJpY2s1NEBmdXR1cmU1LmNvbSIsImNwZiI6IjE1Ni40NTEuMTUxLTEyIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTY1OTYyMDgxOH0.BdxJfcY7L5mt-jJN7I9xYTbwkHD2FbJZkA6RjY8x1n4'
+                auth: localStorage.getItem('token')
             }
         }).then(res => {
-            console.log(res.data.order.order)
+            console.log(res.data)
         }).catch(err => {
             console.log(err.response.data.message)
         })
