@@ -14,6 +14,7 @@ import {
   HistoryParagraph,
   CartParagraph
 } from './ProfileStyle'
+import Footer from '../../Components/Footer/Footer'
 
 const Profile = () => {
 
@@ -52,6 +53,7 @@ const Profile = () => {
 
         <CartParagraph>Você não possui nenhum item</CartParagraph>
       </HistoryStyle>
+      <Footer/>
     </Container>
   )
 }
