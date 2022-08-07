@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+
 import { GlobalContext } from '../../Global/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Components/BASE_URL';
@@ -24,39 +25,46 @@ import {
 } from './SingupStyled'
 
 function Singup() {
+  const { control, setControl } = useContext(GlobalContext)
+  const { form, pegaDados, clear } = useForm({ name: '', email: '', cpf: '', password: '' })
   const navigate = useNavigate()
-  const { } = useContext(GlobalContext)
+ 
 
-  const { form, pegaDados, limpaCampos } = useForm({ name: "", email: "", cpf: "", password: "", confirmPassword: "" })
-  const body = {
-    "name": form.name,
-    "email": form.email,
-    "cpf": form.cpf,
-    "password": form.password,
-    "confirmPassword": form.confirmPassword
-  }
-  const cadastrarUser = () => {
-    axios.post(`${BASE_URL}rappi4B/signup`, body)
+  const singup = (body, clear, navigate, value, setValue) => {
+    axios
+      .post(`${BASE_URL}/signup`, body)
       .then((res) => {
-        console.log(res.data.token)
-        localStorage.setItem('tokenCadastro', res.data.token)
+        localStorage.setItem('token', res.data.token)
+        clear()
         goToAddress(navigate)
-      }).catch((err) => {
-        console.log(err)
+        setValue(value + 1)
+      })
+      .catch((err) => {
+        // alert(err.response.data.message)
       })
   }
-  const onSubmitForm = (e) => {
-    e.preventDefault()
-    cadastrarUser()
-    limpaCampos()
-  }
-  const [values, setValues] = useState({
-    showPassword: false,
-  });
 
-  const [valueSenha, setValueSenha] = useState({
-    showConfirmePassword: false,
-  })
+  //Enviar form
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    if(confirmeSenha()) {
+        singup(form,clear, navigate)
+    }
+    
+}
+
+
+const confirmeSenha = () => {
+    if(form.password !== form.confirmPassword ) {
+        alert("Senhas diferentes")
+        return false
+    }
+    else {
+        return true
+    }
+}
+
+  //Alterar campo
 
   const handleClickShowConfirme = () => {
     setValueSenha({ ...valueSenha, showConfirmePassword: !valueSenha.showConfirmePassword })
@@ -73,6 +81,14 @@ function Singup() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const [values, setValues] = useState({
+    showPassword: false,
+  });
+
+  const [valueSenha, setValueSenha] = useState({
+    showConfirmePassword: false,
+  })
+
 
   return (
     <div>
@@ -94,7 +110,7 @@ function Singup() {
             placeholder={"Nome e sobrenome"}
           />
         </ConteinerInput>
-        
+
         <ConteinerInput>
           <TextField
             name={"email"}
