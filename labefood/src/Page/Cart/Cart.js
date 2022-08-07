@@ -8,7 +8,9 @@ import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCa
 
 
 function Cart() {
-    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, products, setProducts } = useContext(GlobalContext)
+
+    const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho } = useContext(GlobalContext)
+
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
@@ -42,10 +44,34 @@ function Cart() {
         return total + (item.price * item.quantity);
     }
 
-    const removeItem = (id) => {
-        carrinho.filter(item => {
-            return id !== item.id
-        })
+    const removeItem = (ItemID, quantidade) => {
+
+        if (quantidade > 0) {
+            setCarrinho(carrinho.map(item => {
+                if (ItemID === item.id) {
+                    return {
+                        ...item,
+                        'quantity': item.quantity - 1
+                    }
+                }
+                return item
+            }))
+
+            setProducts(products.map(item => {
+                if (ItemID === item.id) {
+                    return {
+                        ...item,
+                        'quantity': item.quantity - 1
+                    }
+
+                }
+                return item
+            }))
+
+        } else {
+            setCarrinho(carrinho.filter(item => ItemID !== item.id))
+            setProducts(products.filter(item => ItemID !== item.id))
+        }
     }
 
     const receberOrder = () => {
@@ -81,7 +107,9 @@ function Cart() {
                         </ContainerValorPedido>
                     </ContainerPedido>
                     <ContainerQuantidade>
-                        <BotaoRemove onClick={() => removeItem(item.id)}>remover</BotaoRemove>
+
+                        <BotaoRemove onClick={() => removeItem(item.id, item.quantity)}>remover</BotaoRemove>
+
                     </ContainerQuantidade>
                 </div>
             </ContainerMapCart>
