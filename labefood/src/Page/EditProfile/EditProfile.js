@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { goToProfile } from '../../Router/Coordinator'
 import useForm from '../../Hooks/UseForm';
 import TextField from '@material-ui/core/TextField'
-import { goToLogin } from '../../Router/Coordinator'
+import { goToFeed } from '../../Router/Coordinator'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Logo from "../../Img/Logologin.png";
 import {
@@ -41,7 +41,7 @@ export default function EditProfile() {
 
   return (
     <div>
-      <ButtonLogin onClick={() => goToLogin(navigate)} ><ArrowBackIosIcon /></ButtonLogin>
+      <ButtonLogin onClick={() => goToFeed(navigate)} ><ArrowBackIosIcon /></ButtonLogin>
       <LogoSingUpPage src={Logo} alt={"Logo Ifuture"} />
       <TextConteinerSingUpPage>Editar</TextConteinerSingUpPage>
       <form onSubmit={onSubmitForm} >

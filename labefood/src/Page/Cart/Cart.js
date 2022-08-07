@@ -5,9 +5,10 @@ import axios from 'axios'
 import { GlobalContext } from '../../Global/GlobalContext'
 import useRequestData from '../../Hooks/useRequestData'
 import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
-import Footer from '../../Components/Footer/Footer'
+
 
 function Cart() {
+
     const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho } = useContext(GlobalContext)
 
     const { form, pegaDados, limpaCampos } = useForm({
@@ -71,7 +72,6 @@ function Cart() {
             setCarrinho(carrinho.filter(item => ItemID !== item.id))
             setProducts(products.filter(item => ItemID !== item.id))
         }
-
     }
 
     const receberOrder = () => {
@@ -107,6 +107,7 @@ function Cart() {
                         </ContainerValorPedido>
                     </ContainerPedido>
                     <ContainerQuantidade>
+
                         <BotaoRemove onClick={() => removeItem(item.id, item.quantity)}>remover</BotaoRemove>
 
                     </ContainerQuantidade>
@@ -119,17 +120,17 @@ function Cart() {
         products: products,
         "paymentMethod": form.paymentMethod
     }
+    console.log(body)
 
     const placeOrder = () => {
-        products.shift()
         axios.post(`${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}/order`, body, {
             headers: {
                 auth: localStorage.getItem('token')
             }
         }).then(res => {
-            alert(res.data)
+            console.log(res.data)
         }).catch(err => {
-            alert(err.response.data.message)
+            console.log(err.response.data.message)
         })
     }
 
@@ -199,7 +200,6 @@ function Cart() {
                     <p>SUBTOTAL {pedido?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
             </div>
-            <Footer />
         </MainContainer>
     )
 }
