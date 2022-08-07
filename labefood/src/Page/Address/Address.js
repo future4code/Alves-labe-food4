@@ -16,47 +16,44 @@ import {
 } from './Styled';
 
 export default function Address() {
+  const { control, setControl } = useContext(GlobalContext)
+  const token = localStorage.getItem('token')
   const navigate = useNavigate()
-  const { } = useContext(GlobalContext)
-
-  const {form, pegaDados, limpaCampos} = useForm({ street: "", number: "", neighbourhood: "", city: "", state: "", complement: "" })
-  const body = {
-    "street": form.street,
-    "number": form.number,
-    "neighbourhood": form.neighbourhood,
-    "city": form.city,
-    "state": form.state,
-    "complement": form.complement,
-  }
-  const cadastrarUser = () => {
-    axios.put(`${BASE_URL}rappi4B/address`, body, {
-      headers: {
-        auth: localStorage.getItem('tokenCadastro')
-      }
-    })
-      .then((res) => {
-        console.log(res.data.token)
-        localStorage.setItem('token', res.data.token)
-        goToFeed(navigate)
-      }).catch((err) => {
-        console.log(err)
+  const { form, pegaDados, clear } = useForm({street: '',number: Number(''),neighbourhood: '',city: '',state: '',complement: ''})
+  const Address = (body, clear, token, navigate, value, setValue) => {
+    axios
+      .put(`${BASE_URL}/address`, body, {
+        headers: {
+          auth: token
+        }
       })
+      .then((res) => {
+        localStorage.setItem('token', res.data.token)
+        clear()
+        goToFeed(navigate)
+        setValue(value + 1)
+      })
+      .catch((err) => {
+      })
+
   }
-  const onSubmitForm = (e) => {
-    e.preventDefault()
-    cadastrarUser()
-    limpaCampos()
+
+  // Enviar form
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    Address(form, clear, token, navigate, control, setControl)
   }
+
 
   return (
     <div>
-      
-        <ButtonLogin onClick={() => goToLogin(navigate)} ><ArrowBackIosIcon /></ButtonLogin>
-        <SignUpAddressPage src={Logo} alt={"Logo Ifuture"} />
 
-        <TextConteinerAddressPage>Meu Endereço</TextConteinerAddressPage>
+      <ButtonLogin onClick={() => goToLogin(navigate)} ><ArrowBackIosIcon /></ButtonLogin>
+      <SignUpAddressPage src={Logo} alt={"Logo Ifuture"} />
 
-      
+      <TextConteinerAddressPage>Meu Endereço</TextConteinerAddressPage>
+
+
       <form onSubmit={onSubmitForm}>
 
 
