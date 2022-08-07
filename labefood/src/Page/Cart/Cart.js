@@ -9,6 +9,7 @@ import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
     const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho } = useContext(GlobalContext)
+
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
@@ -70,6 +71,7 @@ function Cart() {
             setCarrinho(carrinho.filter(item => ItemID !== item.id))
             setProducts(products.filter(item => ItemID !== item.id))
         }
+
     }
 
     const receberOrder = () => {
@@ -106,6 +108,7 @@ function Cart() {
                     </ContainerPedido>
                     <ContainerQuantidade>
                         <BotaoRemove onClick={() => removeItem(item.id, item.quantity)}>remover</BotaoRemove>
+
                     </ContainerQuantidade>
                 </div>
             </ContainerMapCart>
