@@ -266,11 +266,6 @@ function RestaurantDetail() {
         }
     }
 
-    const removeArray = () => {
-        const teste = products.shift()
-        console.log(teste)
-    }
-
     return (
         <MainContainer>
             <Button onClick={handleClickOpen}>Quantidade</Button>
@@ -331,7 +326,7 @@ function RestaurantDetail() {
             <div>
                 {renderizaProduto()}
             </div>
-            <button onClick={() => { removeArray(); goTocart(navigate) }}>Carrinho</button>
+            <button onClick={() => { goTocart(navigate) }}>Carrinho</button>
         </MainContainer >
     )
 }
