@@ -248,6 +248,35 @@ function RestaurantDetail() {
     }
     return (
         <MainContainer>
+            <Button onClick={handleClickOpen}>Quantidade</Button>
+            <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+                <DialogTitle>Selecione a quantidade desejada</DialogTitle>
+                <DialogContent>
+                    <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                        <FormControl sx={{ m: 1, minWidth: 250 }}>
+                            <InputLabel htmlFor="demo-dialog-native">Quantidade</InputLabel>
+                            <Select
+                                native
+                                value={age}
+                                onChange={handleChange}
+                                input={<OutlinedInput label="0" id="demo-dialog-native" />}
+                            >
+                                <option aria-label="None" value="" />
+                                <option name='quantity'>1</option>
+                                <option name='quantity'>2</option>
+                                <option name='quantity'>3</option>
+                                <option name='quantity'>4</option>
+                                <option name='quantity'>5</option>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Ok</Button>
+                </DialogActions>
+            </Dialog>
+
+
             <Container1>
                 <Container2>
                     <ImageLogo src={restaurant && restaurant.logoUrl} />
