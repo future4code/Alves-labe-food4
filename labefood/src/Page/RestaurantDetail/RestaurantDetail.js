@@ -267,27 +267,7 @@ function RestaurantDetail() {
             console.log(products)
         }
     }
-    const testeGabi = () => {
-        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4B/orders/history`, {
-            headers: {
-                auth: localStorage.getItem('token')
-            }
-        }).then((resposta) => {
-            setGabi(resposta.data)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-    useEffect(() => {
-        testeGabi()
-    }, [])
-    console.log(gabi)
-    const testeGabiMap = gabi && gabi.orders.map((teste) => {
-        return <div>
-            {teste.restaurantName}
-            SUBTOTAL:{teste.totalPrice}
-        </div>
-    })
+
     return (
         <MainContainer>
             {testeGabiMap}

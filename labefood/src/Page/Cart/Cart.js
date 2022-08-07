@@ -8,7 +8,8 @@ import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCa
 import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
-    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, setCarrinho, products, setProducts } = useContext(GlobalContext)
+    const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho } = useContext(GlobalContext)
+
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
@@ -42,17 +43,35 @@ function Cart() {
         return total + (item.price * item.quantity);
     }
 
-    const removerItem = (itemID) => {
-        const novosProdutos = carrinho.map((item) => {
-            if (item.id === itemID) {
-                return {
-                    ...item,
-                    quantidade: item.quantidade - 1
+    const removeItem = (ItemID, quantidade) => {
+
+        if (quantidade > 0) {
+            setCarrinho(carrinho.map(item => {
+                if (ItemID === item.id) {
+                    return {
+                        ...item,
+                        'quantity': item.quantity - 1
+                    }
                 }
-            }
-            return item
-        }).filter((item) => item.quantidade > 0)
-        setCarrinho(novosProdutos)
+                return item
+            }))
+
+            setProducts(products.map(item => {
+                if (ItemID === item.id) {
+                    return {
+                        ...item,
+                        'quantity': item.quantity - 1
+                    }
+
+                }
+                return item
+            }))
+
+        } else {
+            setCarrinho(carrinho.filter(item => ItemID !== item.id))
+            setProducts(products.filter(item => ItemID !== item.id))
+        }
+
     }
 
     const receberOrder = () => {
@@ -88,7 +107,8 @@ function Cart() {
                         </ContainerValorPedido>
                     </ContainerPedido>
                     <ContainerQuantidade>
-                        <BotaoRemove onClick={() => removerItem(item.id)}>remover</BotaoRemove>
+                        <BotaoRemove onClick={() => removeItem(item.id, item.quantity)}>remover</BotaoRemove>
+
                     </ContainerQuantidade>
                 </div>
             </ContainerMapCart>
