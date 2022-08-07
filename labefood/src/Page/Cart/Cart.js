@@ -4,16 +4,15 @@ import { BASE_URL } from '../../Components/BASE_URL'
 import axios from 'axios'
 import { GlobalContext } from '../../Global/GlobalContext'
 import useRequestData from '../../Hooks/useRequestData'
-import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
+import {Pedido, ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
 import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
-    const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho } = useContext(GlobalContext)
+    const { frete, restauranteSele, carrinho, products, setProducts, setCarrinho, setPedido } = useContext(GlobalContext)
 
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
-    const [pedido, setPedido] = useState()
     const enderecoUser = useRequestData([], `${BASE_URL}rappi4B/profile`)
     const enderecoRes = useRequestData([], `${BASE_URL}rappi4B/restaurants`)
 
@@ -192,13 +191,6 @@ function Cart() {
                     </ContainerBotaoConfirmar>
                 </form>
             </MainContainerPagamento>
-            <div>
-                <p>Pedido em andamento</p>
-                <p>{pedido?.restaurantName}</p>
-                <div>
-                    <p>SUBTOTAL {pedido?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                </div>
-            </div>
             <Footer />
         </MainContainer>
     )

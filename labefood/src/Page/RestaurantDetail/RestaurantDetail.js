@@ -270,7 +270,6 @@ function RestaurantDetail() {
 
     return (
         <MainContainer>
-            {testeGabiMap}
             <Button onClick={handleClickOpen}>Quantidade</Button>
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
                 <DialogTitle>Selecione a quantidade desejada</DialogTitle>

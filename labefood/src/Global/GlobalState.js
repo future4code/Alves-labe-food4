@@ -12,6 +12,7 @@ export default function GlobalState(props) {
         id: '',
         quantity: ''
     }])
+    const [pedido, setPedido] = useState()
 
     const value = {
         restaurante,
@@ -25,7 +26,9 @@ export default function GlobalState(props) {
         carrinho,
         setCarrinho,
         products,
-        setProducts
+        setProducts,
+        pedido,
+        setPedido
 
     }
 

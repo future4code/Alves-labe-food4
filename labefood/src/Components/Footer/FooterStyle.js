@@ -6,8 +6,6 @@ export const ContainerMenu = styled.div`
     grid-template-columns: repeat(3, 1fr);
     height: 49px;
     justify-content: center;
-    position: fixed;
-    bottom: 0;
     width: 100vw;
     background-color: #fff;
     div {
@@ -19,4 +17,24 @@ export const ContainerMenu = styled.div`
     img {
         width: 27px;
     }
+    
+`
+export const Pedido = styled.div`
+  background-color: #e86e5a;
+  color: white;
+  letter-spacing: -0.39px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  
+  p {
+    margin: 8px 0 8px 24px;
+  }
+  h4 {
+    color: black;
+    margin: 8px 0 8px 24px;
+  }
+  img {
+    margin: 2px 24px 0 0;
+  }
 `
