@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
-
-
+export const ImagemLogo = styled.img`
+`
+export const MainContainerImg = styled.div`
+height:100vh;
+background-color:#e86e5a;
+display:flex;
+justify-content:center;
+align-items:center;
+`
 export const ContainerLogin = styled.div`
     display: flex;
     flex-direction: column;
@@ -15,7 +22,6 @@ export const Title = styled.div`
   align-items: center;
   justify-content: center;
 `
-
 export const ContainerForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -65,7 +71,7 @@ export const ButtonSignUp = styled.button`
     background-color: transparent;
     font-size: 1rem;
      `
-export const LogoLoginPage  = styled.img ` 
+export const LogoLoginPage = styled.img` 
 width: max-content;
 height: max-content;
 display: block;

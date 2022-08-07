@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Logo = styled.div`
+export const ContainerLogo = styled.div`
     align-items: center;
     background-color: #e86e5a;
     display: flex;

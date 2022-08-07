@@ -5,7 +5,7 @@ import Logo from '../../Img/Logologin.png'
 
 const token = window.localStorage.getItem('token')
 
-function Logo() {
+function LogoLoading() {
 
   const navigate = useNavigate()
 
@@ -26,4 +26,4 @@ function Logo() {
   )
 }
 
-export default Logo;
+export default LogoLoading;

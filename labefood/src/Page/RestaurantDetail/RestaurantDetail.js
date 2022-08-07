@@ -148,27 +148,6 @@ color:#e02020;
 `
 
 function RestaurantDetail() {
-
-    const [open, setOpen] = React.useState(false);
-    const [age, setAge] = React.useState('');
-    const [gabi, setGabi] = useState()
-
-    const handleChange = (event) => {
-        setAge(Number(event.target.value) || '');
-    };
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (event, reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false);
-        }
-    };
-
-
-
     const { carrinho, setCarrinho, setProducts, products } = useContext(GlobalContext)
     const navigate = useNavigate()
     const { restaurant } = useRequestData([], `${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}`)
@@ -267,7 +246,6 @@ function RestaurantDetail() {
             console.log(products)
         }
     }
-
     return (
         <MainContainer>
             <Button onClick={handleClickOpen}>Quantidade</Button>
