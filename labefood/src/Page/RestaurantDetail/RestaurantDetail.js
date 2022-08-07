@@ -306,7 +306,7 @@ function RestaurantDetail() {
             <div>
                 {renderizaProduto()}
             </div>
-            <button onClick={() => { goTocart(navigate) }}>Carrinho</button>
+            <button onClick={() => { goTocart(navigate) }}>CarrinhE</button>
         </MainContainer >
     )
 }
