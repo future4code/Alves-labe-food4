@@ -148,27 +148,6 @@ color:#e02020;
 `
 
 function RestaurantDetail() {
-
-    const [open, setOpen] = React.useState(false);
-    const [age, setAge] = React.useState('');
-    const [gabi, setGabi] = useState()
-
-    const handleChange = (event) => {
-        setAge(Number(event.target.value) || '');
-    };
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (event, reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false);
-        }
-    };
-
-
-
     const { carrinho, setCarrinho, setProducts, products } = useContext(GlobalContext)
     const navigate = useNavigate()
     const { restaurant } = useRequestData([], `${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}`)
@@ -267,59 +246,8 @@ function RestaurantDetail() {
             console.log(products)
         }
     }
-    const testeGabi = () => {
-        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4B/orders/history`, {
-            headers: {
-                auth: localStorage.getItem('token')
-            }
-        }).then((resposta) => {
-            setGabi(resposta.data)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-    useEffect(() => {
-        testeGabi()
-    }, [])
-    console.log(gabi)
-    const testeGabiMap = gabi && gabi.orders.map((teste) => {
-        return <div>
-            {teste.restaurantName}
-            SUBTOTAL:{teste.totalPrice}
-        </div>
-    })
     return (
         <MainContainer>
-            {testeGabiMap}
-            <Button onClick={handleClickOpen}>Quantidade</Button>
-            <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-                <DialogTitle>Selecione a quantidade desejada</DialogTitle>
-                <DialogContent>
-                    <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <FormControl sx={{ m: 1, minWidth: 250 }}>
-                            <InputLabel htmlFor="demo-dialog-native">Quantidade</InputLabel>
-                            <Select
-                                native
-                                value={age}
-                                onChange={handleChange}
-                                input={<OutlinedInput label="0" id="demo-dialog-native" />}
-                            >
-                                <option aria-label="None" value="" />
-                                <option name='quantity'>1</option>
-                                <option name='quantity'>2</option>
-                                <option name='quantity'>3</option>
-                                <option name='quantity'>4</option>
-                                <option name='quantity'>5</option>
-                            </Select>
-                        </FormControl>
-                    </Box>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Ok</Button>
-                </DialogActions>
-            </Dialog>
-
-
             <Container1>
                 <Container2>
                     <ImageLogo src={restaurant && restaurant.logoUrl} />

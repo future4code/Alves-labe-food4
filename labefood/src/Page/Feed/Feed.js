@@ -51,7 +51,6 @@ function Feed() {
   }
   return (
     <MainContainer>
-      Rappi - 4B
       <ContainerRenderMain>
         <CampoDados>
           <Icone src={IconeLupa} />

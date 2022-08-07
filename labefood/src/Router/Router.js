@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes ,Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from '../Page/Login/Login'
 import Singup from '../Page/Sign-up/Singup'
 import Feed from '../Page/Feed/Feed'
@@ -10,10 +10,13 @@ import EditProfile from '../Page/EditProfile/EditProfile'
 import EditAddress from '../Page/EditAddress/EditAddress'
 import Address from "../Page/Address/Address";
 import RestaurantDetail from "../Page/RestaurantDetail/RestaurantDetail";
+import Header from "../Components/Header/Header";
+
 
 const Router = () => {
     return (
         <BrowserRouter>
+            <Header />
             <Routes>
                 <Route index element={<Login />} />
                 <Route path='singup' element={<Singup />} />
