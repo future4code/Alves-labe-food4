@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../../Global/GlobalContext'
 import { BASE_URL } from '../../Components/BASE_URL'
@@ -17,6 +17,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import axios from 'axios'
 
 const MainContainer = styled.div`
 width:100vw;
@@ -150,6 +151,7 @@ function RestaurantDetail() {
 
     const [open, setOpen] = React.useState(false);
     const [age, setAge] = React.useState('');
+    const [gabi, setGabi] = useState()
 
     const handleChange = (event) => {
         setAge(Number(event.target.value) || '');
@@ -265,14 +267,30 @@ function RestaurantDetail() {
             console.log(products)
         }
     }
-
-    const removeArray = () => {
-        const teste = products.shift()
-        console.log(teste)
+    const testeGabi = () => {
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4B/orders/history`, {
+            headers: {
+                auth: localStorage.getItem('token')
+            }
+        }).then((resposta) => {
+            setGabi(resposta.data)
+        }).catch((err) => {
+            console.log(err)
+        })
     }
-
+    useEffect(() => {
+        testeGabi()
+    }, [])
+    console.log(gabi)
+    const testeGabiMap = gabi && gabi.orders.map((teste) => {
+        return <div>
+            {teste.restaurantName}
+            SUBTOTAL:{teste.totalPrice}
+        </div>
+    })
     return (
         <MainContainer>
+            {testeGabiMap}
             <Button onClick={handleClickOpen}>Quantidade</Button>
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
                 <DialogTitle>Selecione a quantidade desejada</DialogTitle>
@@ -331,7 +349,7 @@ function RestaurantDetail() {
             <div>
                 {renderizaProduto()}
             </div>
-            <button onClick={() => { removeArray(); goTocart(navigate) }}>Carrinho</button>
+            <button onClick={() => { goTocart(navigate) }}>Carrinho</button>
         </MainContainer >
     )
 }

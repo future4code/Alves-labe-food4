@@ -8,7 +8,7 @@ import { ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCa
 import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
-    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, products, setProducts } = useContext(GlobalContext)
+    const { restaurante, setRestaurante, bodyPedido, setBodyPedido, frete, restauranteSele, carrinho, setCarrinho, products, setProducts } = useContext(GlobalContext)
     const { form, pegaDados, limpaCampos } = useForm({
         paymentMethod: ''
     })
@@ -42,10 +42,17 @@ function Cart() {
         return total + (item.price * item.quantity);
     }
 
-    const removeItem = (id) => {
-        carrinho.filter(item => {
-            return id !== item.id
-        })
+    const removerItem = (itemID) => {
+        const novosProdutos = carrinho.map((item) => {
+            if (item.id === itemID) {
+                return {
+                    ...item,
+                    quantidade: item.quantidade - 1
+                }
+            }
+            return item
+        }).filter((item) => item.quantidade > 0)
+        setCarrinho(novosProdutos)
     }
 
     const receberOrder = () => {
@@ -81,7 +88,7 @@ function Cart() {
                         </ContainerValorPedido>
                     </ContainerPedido>
                     <ContainerQuantidade>
-                        <BotaoRemove onClick={() => removeItem(item.id)}>remover</BotaoRemove>
+                        <BotaoRemove onClick={() => removerItem(item.id)}>remover</BotaoRemove>
                     </ContainerQuantidade>
                 </div>
             </ContainerMapCart>
@@ -94,6 +101,7 @@ function Cart() {
     }
 
     const placeOrder = () => {
+        products.shift()
         axios.post(`${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}/order`, body, {
             headers: {
                 auth: localStorage.getItem('token')
@@ -171,7 +179,7 @@ function Cart() {
                     <p>SUBTOTAL {pedido?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </MainContainer>
     )
 }
