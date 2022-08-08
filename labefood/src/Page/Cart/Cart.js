@@ -5,7 +5,7 @@ import axios from 'axios'
 import { GlobalContext } from '../../Global/GlobalContext'
 import useRequestData from '../../Hooks/useRequestData'
 
-import {Pedido, ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
+import { Pedido, ContainerUser, BotaoConfirmar, Linha, BotaoRemove, Quantidade, ImagemCard, ContainerEndereco, ContainerBotaoConfirmar, Input, ContainerPrecoTotal, ContainerSubTotal, ContainerPagamento, Frete, MainContainerPagamento, ContainerValorPedido, ContainerDescricao, ContainerNome, ContainerQuantidade, ContainerCarrinho, ContainerPedido, MainContainerMapCart, ContainerMapCart, EnderecoRes, NomeRes, ContainerResFiltrado, ContainerEnderecoRes, MainContainer, ContainerEnderecoUser } from "./CartStyled"
 import Footer from '../../Components/Footer/Footer'
 
 function Cart() {
@@ -119,17 +119,16 @@ function Cart() {
         products: products,
         "paymentMethod": form.paymentMethod
     }
-    console.log(body)
 
     const placeOrder = () => {
+        products.shift()
         axios.post(`${BASE_URL}rappi4B/restaurants/${localStorage.getItem('id')}/order`, body, {
             headers: {
                 auth: localStorage.getItem('token')
             }
         }).then(res => {
-            console.log(res.data)
         }).catch(err => {
-            console.log(err.response.data.message)
+            alert(err.response.data.message)
         })
     }
 

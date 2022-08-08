@@ -70,8 +70,6 @@ function Feed() {
         </CampoBotao>
         {renderizarRestaurantes}
       </ContainerRenderMain>
-      <button onClick={() => logout(navigate)}>Logout</button>
-      <button onClick={() => goTocart(navigate)}>IR PARA CARRINHO</button>
       <Footer />
     </MainContainer>
   )
