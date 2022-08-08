@@ -1,11 +1,11 @@
 # LabeFood
 
 ## Feito por:
-Pétrick Machado de Almeida Grillo
-Gabriela Tobias
-Ruan Marques
-Lucas Rafael Martins de Paula
-Henrique Dos Santos Rodriguez
+- Pétrick Machado de Almeida Grillo
+- Gabriela Tobias
+- Ruan Marques
+- Lucas Rafael Martins de Paula
+- Henrique Dos Santos Rodriguez
 
 ## Link do Surge: fabulous-ticket.surge.sh
 - Login: Petrick@future4.com
