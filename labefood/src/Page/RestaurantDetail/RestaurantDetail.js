@@ -224,7 +224,6 @@ function RestaurantDetail() {
                 }
                 return item
             }))
-            console.log(products)
             setCarrinho(carrinho.map(item => {
                 if (id === item.id) {
                     return {
@@ -242,8 +241,6 @@ function RestaurantDetail() {
 
             const novosItem = [...products, { id: id, 'quantity': parseInt(form.quantity) }]
             setProducts(novosItem)
-
-            console.log(products)
         }
     }
     return (
@@ -273,11 +270,11 @@ function RestaurantDetail() {
                         <p>{restaurant && restaurant.address}</p>
                     </Container7>
                 </Container8>
+            <BotaoAdd onClick={() => { goTocart(navigate) }}>Ir para o Carrinho</BotaoAdd>
             </Container1>
             <div>
                 {renderizaProduto()}
             </div>
-            <button onClick={() => { goTocart(navigate) }}>CarrinhE</button>
         </MainContainer >
     )
 }

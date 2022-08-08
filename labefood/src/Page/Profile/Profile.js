@@ -21,7 +21,6 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const requestProfile = useRequestData({}, `${BASE_URL}rappi4B/profile`)
-  console.log(requestProfile)
   const userProfile = requestProfile.user
 
 
