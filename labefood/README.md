@@ -1,13 +1,13 @@
 # LabeFood
 
 ## Feito por:
-- Pétrick Machado de Almeida Grillo
-- Gabriela Tobias
-- Ruan Marques
-- Lucas Rafael Martins de Paula
-- Henrique Dos Santos Rodriguez
+Pétrick Machado de Almeida Grillo
+Gabriela Tobias
+Ruan Marques
+Lucas Rafael Martins de Paula
+Henrique Dos Santos Rodriguez
 
-## Link do Surge: soft-sheep.surge.sh
+## Link do Surge: fabulous-ticket.surge.sh
 - Login: Petrick@future4.com
 - Senha: 123456
 
@@ -40,10 +40,3 @@ A aba de perfil do usuario é capaz de voce editar seus dados e ver seus histori
 
 ## Imagens do projeto:
 ### Imagens retiradas das dimensões de iPhone 6/7/8
-
-![image](https://user-images.githubusercontent.com/104538955/183319270-d807dba7-70d2-4daa-a2ef-b07b8564d452.png)
-![image](https://user-images.githubusercontent.com/104538955/183319217-f7823fba-7908-4ae5-a300-a5ed874239b1.png)
-![image](https://user-images.githubusercontent.com/104538955/183319279-2f114875-ec50-4b6f-9874-0a2fc86de40f.png)
-![image](https://user-images.githubusercontent.com/104538955/183319309-4dd12894-cfc9-4d4e-99dd-3e632bd09fc5.png)
-
-
